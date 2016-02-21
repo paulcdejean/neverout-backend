@@ -31,9 +31,16 @@ def index(request):
     plot.line(xvalues, yvalues, line_width=2)
 
 
-    empty_line = Span(location=1, dimension='width', line_color='green', line_width=3, line_dash='dashed')
-    full_line = Span(location=7, dimension='width', line_color='green', line_width=3, line_dash='dashed')
-    plot.renderers.extend([empty_line, full_line])
+    spans = []
+    limit = Limits.objects.get(device=0)
+    if limit.full:
+        full_line = Span(location=limit.full, dimension='width', line_color='green', line_width=3, line_dash='dashed')
+        spans.append(full_line)
+    if limit.empty:
+        empty_line = Span(location=limit.empty, dimension='width', line_color='red', line_width=3, line_dash='dashed')
+        spans.append(empty_line)
+
+    plot.renderers.extend(spans)
 
     script, div = components(plot, CDN)
 
