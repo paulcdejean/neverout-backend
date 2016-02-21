@@ -9,5 +9,5 @@ class Reading(models.Model):
 
 class Limits(models.Model):
     device = models.IntegerField()
-    full = models.FloatField()
-    empty = models.FloatField()
+    full = models.FloatField(null=True)
+    empty = models.FloatField(null=True)
