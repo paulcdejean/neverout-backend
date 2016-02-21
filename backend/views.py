@@ -7,6 +7,9 @@ from bokeh.plotting import figure
 from bokeh.resources import CDN
 from bokeh.embed import components
 
+import numpy as np
+from bokeh.charts import Line
+
 def add_point(request, value):
     new_reading = Reading(time=timezone.now(), weight=value)
     new_reading.save()
@@ -21,9 +24,13 @@ def index(request):
     plot.xaxis.axis_label = "Date"
     plot.yaxis.axis_label = "Weight"
 
-    xyvalues = [[2, 3, 7, 5, 26], [12, 33, 47, 15, 126], [22, 43, 10, 25, 26]]
-    plot.line(xyvalues)
+    xvalues = [1, 2, 3, 4, 5]
+    yvalues = [6, 7, 2, 4, 5]
+
+    plot.line([1, 2, 3, 4, 6], [6, 7, 2, 4, 5], line_width=2)
 
     script, div = components(plot, CDN)
 
-    return render(request, "simple_chart.html", {"the_script": script, "the_div": div})
+    return HttpResponse(Reading.objects.values_list('weight', flat=True))
+
+    #return render(request, "simple_chart.html", {"the_script": script, "the_div": div})
