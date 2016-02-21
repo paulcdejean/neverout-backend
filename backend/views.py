@@ -31,8 +31,8 @@ def index(request):
     plot.line(xvalues, yvalues, line_width=2)
 
 
-    empty_line = Span(location=1, dimension='width', line_color='green', line_width=3, line_dash='dashed', legend="Full")
-    full_line = Span(location=7, dimension='width', line_color='green', line_width=3, line_dash='dashed', legend="Empty")
+    empty_line = Span(location=1, dimension='width', line_color='green', line_width=3, line_dash='dashed')
+    full_line = Span(location=7, dimension='width', line_color='green', line_width=3, line_dash='dashed')
     plot.renderers.extend([empty_line, full_line])
 
     script, div = components(plot, CDN)
