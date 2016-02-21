@@ -31,7 +31,8 @@ def index(request):
 
     #slope, intercept, r_value, p_value, std_err = stats.linregress(xvalues[-6:], yvalues[-6:])
 
-    plot.segment(x0=xvalues[len(xvalues) - 6], y0=yvalues[len(yvalues) - 6], x1=xvalues[len(xvalues) - 1], y1=yvalues[len(yvalues) - 1])
+    #plot.segment(x0=xvalues[len(xvalues) - 6], y0=yvalues[len(yvalues) - 6], x1=xvalues[len(xvalues) - 1], y1=yvalues[len(yvalues) - 1])
+    plot.segment(x0=[0], y0=[0], x1=[1], y1=[1])
 
     spans = []
     limit = Limits.objects.get(device=0)
