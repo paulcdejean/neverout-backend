@@ -19,7 +19,7 @@ def name(request):
     return HttpResponse("Bananas")
 
 def index(request):
-    plot = figure(width=800, height=600)
+    plot = figure(width=800, height=600, x_axis_type="datetime")
     plot.title = "Banana weight"
     plot.xaxis.axis_label = "Date"
     plot.yaxis.axis_label = "Weight"
