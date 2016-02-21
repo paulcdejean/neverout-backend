@@ -6,6 +6,7 @@ from backend.models import *
 from bokeh.plotting import figure
 from bokeh.resources import CDN
 from bokeh.embed import components
+from bokeh.models import Span
 
 import numpy as np
 from bokeh.charts import Line
