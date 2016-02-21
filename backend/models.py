@@ -4,5 +4,5 @@ from django.db import models
 
 # Create your models here.
 class Reading(models.Model):
-    time = models.DateTimeField(auto_now=True)
+    time = models.DateTimeField()
     weight = models.FloatField()
