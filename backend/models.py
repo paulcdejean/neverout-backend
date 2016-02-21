@@ -6,3 +6,8 @@ from django.db import models
 class Reading(models.Model):
     time = models.DateTimeField()
     weight = models.FloatField()
+
+class Limits(models.Model):
+    device = models.IntegerField()
+    full = models.FloatField()
+    empty = models.FloatField()

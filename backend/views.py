@@ -32,3 +32,8 @@ def index(request):
     script, div = components(plot, CDN)
 
     return render(request, "simple_chart.html", {"the_script": script, "the_div": div})
+
+def set_empty(request, value):
+    limit, created = Limits.objects.update_or_create(device=0, empty=value)
+    return HttpResponse("")
+
