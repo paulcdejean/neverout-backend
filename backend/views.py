@@ -24,13 +24,11 @@ def index(request):
     plot.xaxis.axis_label = "Date"
     plot.yaxis.axis_label = "Weight"
 
-    xvalues = [1, 2, 3, 4, 5]
-    yvalues = [6, 7, 2, 4, 5]
+    xvalues = Reading.objects.values_list('time', flat=True)
+    yvalues = Reading.objects.values_list('weight', flat=True)
 
-    plot.line([1, 2, 3, 4, 6], [6, 7, 2, 4, 5], line_width=2)
+    plot.line(xvalues, yvalues, line_width=2)
 
     script, div = components(plot, CDN)
 
-    return HttpResponse(Reading.objects.values_list('weight', flat=True))
-
-    #return render(request, "simple_chart.html", {"the_script": script, "the_div": div})
+    return render(request, "simple_chart.html", {"the_script": script, "the_div": div})
