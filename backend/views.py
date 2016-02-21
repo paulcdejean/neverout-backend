@@ -29,6 +29,11 @@ def index(request):
 
     plot.line(xvalues, yvalues, line_width=2)
 
+
+    empty_line = Span(location=1, dimension='width', line_color='green', line_width=3, line_dash='dashed', legend="Full")
+    full_line = Span(location=7, dimension='width', line_color='green', line_width=3, line_dash='dashed', legend="Empty")
+    plot.renderers.extend([empty_line, full_line])
+
     script, div = components(plot, CDN)
 
     return render(request, "simple_chart.html", {"the_script": script, "the_div": div})
