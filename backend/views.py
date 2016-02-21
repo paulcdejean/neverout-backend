@@ -34,11 +34,11 @@ def index(request):
     return render(request, "simple_chart.html", {"the_script": script, "the_div": div})
 
 def set_empty(request, value):
-    limit = Limits.objects.get(device=0)
-    if(limit.exists()):
+    try:
+        limit = Limits.objects.get(device=0)
         limit.empty = value
         limit.save()
-    else:
+    except ObjectDoesNotExists:
         limit = Limits(device=0, empty=value)
         limit.save()
     return HttpResponse("")
