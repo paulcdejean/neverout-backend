@@ -7,8 +7,8 @@ from bokeh.plotting import figure
 from bokeh.resources import CDN
 from bokeh.embed import components
 from bokeh.models import Span
-
 import numpy as np
+from scipy import stats
 from bokeh.charts import Line
 
 def add_point(request, value):
@@ -30,6 +30,9 @@ def index(request):
 
     plot.line(xvalues, yvalues, line_width=2)
 
+    slope, intercept, r_value, p_value, std_err = stats.linregress(xvalues[-6:], yvalues[-6:])
+
+    plot.segment(x0=xvalues[-6], y0=yvalues[-6], x1=xvalues[-1], y1=yvalues[-1])
 
     spans = []
     limit = Limits.objects.get(device=0)
