@@ -6,7 +6,6 @@ from backend.models import *
 from bokeh.plotting import figure
 from bokeh.resources import CDN
 from bokeh.embed import components
-from bokeh.sampledata.stocks import AAPL
 
 def add_point(request, value):
     new_reading = Reading(time=timezone.now(), weight=value)
@@ -21,7 +20,9 @@ def index(request):
     plot.title = "Banana weight"
     p1.xaxis.axis_label = "Date"
     plot.yaxis.axis_label = "Weight"
-    plot.line(datetime(AAPL['date']), AAPL['adj_close'])
+
+    xyvalues = [[2, 3, 7, 5, 26], [12, 33, 47, 15, 126], [22, 43, 10, 25, 26]]
+    plot.line(xyvalues)
 
     script, div = components(plot, CDN)
 
