@@ -42,3 +42,13 @@ def set_empty(request, value):
         limit = Limits(device=0, empty=value)
         limit.save()
     return HttpResponse("")
+
+def set_full(request, value):
+    try:
+        limit = Limits.objects.get(device=0)
+        limit.full = value
+        limit.save()
+    except ObjectDoesNotExists:
+        limit = Limits(device=0, full=value)
+        limit.save()
+    return HttpResponse("")
