@@ -17,11 +17,11 @@ def add_point(request, value):
     return HttpResponse("")
 
 def name(request):
-    return HttpResponse("Water cups")
+    return HttpResponse("Water bottles")
 
 def index(request):
     plot = figure(width=800, height=600, x_axis_type="datetime")
-    plot.title = "Water cups weight"
+    plot.title = "Water bottles weight"
     plot.xaxis.axis_label = "Date"
     plot.yaxis.axis_label = "Weight"
 
