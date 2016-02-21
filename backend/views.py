@@ -6,6 +6,7 @@ from backend.models import *
 from bokeh.plotting import figure
 from bokeh.resources import CDN
 from bokeh.embed import components
+from bokeh.sampledata.stocks import AAPL
 
 def add_point(request, value):
     new_reading = Reading(time=timezone.now(), weight=value)
@@ -16,8 +17,11 @@ def name(request):
     return HttpResponse("Bananas")
 
 def index(request):
-    plot = figure(width=300, height=300)
-    plot.annulus(x=[1, 2, 3], y=[1, 2, 3], color="#7FC97F", inner_radius=0.2, outer_radius=0.5)
+    plot = figure(width=800, height=600)
+    plot.title = "Banana weight"
+    p1.xaxis.axis_label = "Date"
+    plot.yaxis.axis_label = "Weight"
+    plot.line(datetime(AAPL['date']), AAPL['adj_close'])
 
     script, div = components(plot, CDN)
 
